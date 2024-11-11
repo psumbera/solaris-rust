@@ -1,0 +1,23 @@
+Build and install also Cargo.
+
+Part of Solaris distribution configuration.
+
+--- a/config.example.toml
++++ b/config.example.toml
+@@ -299,7 +299,7 @@
+ # which tools should be built if `extended = true`.
+ #
+ # This is disabled by default.
+-#extended = false
++extended = true
+ 
+ # Set of tools to be included in the installation.
+ #
+@@ -319,6 +319,7 @@
+ #    "src",
+ #    "rust-demangler",  # if profiler = true
+ #]
++tools = ["cargo", "rustfmt"]
+ 
+ # Verbosity level: 0 == not verbose, 1 == verbose, 2 == very verbose, 3 == print environment variables on each rustc invocation
+ #verbose = 0
