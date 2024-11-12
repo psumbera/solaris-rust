@@ -1,0 +1,21 @@
+#!/bin/bash
+
+RUST_SOLARIS_VERSION=1.82.0
+RUST_SOLARIS_DIR=~/.rust-solaris
+
+mkdir -p $RUST_SOLARIS_DIR
+
+if [ -d $RUST_SOLARIS_DIR/rustc-$RUST_SOLARIS_VERSION ] ; then
+  echo "Rust $RUST_SOLARIS_VERSION is already installed (in $RUST_SOLARIS_DIR/rustc-$RUST_SOLARIS_VERSION)! Nothing updated!"
+else
+  echo "Downloading Rust $RUST_SOLARIS_VERSION for Solaris from github. It can take some time..."
+  ( cd $RUST_SOLARIS_DIR; curl -sSf -L https://github.com/psumbera/solaris-rust/releases/download/$RUST_SOLARIS_VERSION/rust-$RUST_SOLARIS_VERSION-Solaris-11.4.42-CBE-`mach`.tar.xz | gtar xJ )
+  echo "Rust $RUST_SOLARIS_VERSION was installed into $RUST_SOLARIS_DIR."
+fi
+
+echo $PATH | grep $RUST_SOLARIS_DIR/rustc-$RUST_SOLARIS_VERSION/bin > /dev/null
+if [ $? -ne 0 ] ; then
+  PATH=$RUST_SOLARIS_DIR/rustc-$RUST_SOLARIS_VERSION/bin:$PATH
+  echo "PATH was modified to: PATH=$RUST_SOLARIS_DIR/rustc-$RUST_SOLARIS_VERSION/bin:\$PATH"
+fi
+
