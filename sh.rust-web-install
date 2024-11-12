@@ -13,6 +13,8 @@ else
   echo "Rust $RUST_SOLARIS_VERSION was installed into $RUST_SOLARIS_DIR."
 fi
 
+( cd $RUST_SOLARIS_DIR; rm -f bin; ln -s rustc-$RUST_SOLARIS_VERSION/bin bin )
+
 echo $PATH | grep $RUST_SOLARIS_DIR/rustc-$RUST_SOLARIS_VERSION/bin > /dev/null
 if [ $? -ne 0 ] ; then
   PATH=$RUST_SOLARIS_DIR/rustc-$RUST_SOLARIS_VERSION/bin:$PATH

@@ -25,4 +25,6 @@ PATH was modified to: PATH=/export/home/test/.rust-solaris/rustc-1.82.0/bin:$PAT
 $
 ```
 
+Note that `~/.rust-solaris/bin` link should point to Rust bin directory.
+
 [1] https://www.oracle.com/solaris/solaris11/downloads/solaris-downloads.html
