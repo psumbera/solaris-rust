@@ -39,9 +39,9 @@ mkdir -p $BUILD_HOME $PROTO_DIR
 
 # Patch sources
 ( cd "$BUILD_DIR"/${SRC_DIR};
-  cat "$WS/patches-$VERSION/series" | while read patch args; do
+  cat "$WS/patches/series" | while read patch args; do
     echo $patch | grep ^\# > /dev/null && continue
-    gpatch --batch --forward --strip=1 $args -i "$WS/patches-$VERSION/$patch"
+    gpatch --batch --forward --strip=1 $args -i "$WS/patches/$patch"
   done )
 
 # Force cargo to use vendored sources
