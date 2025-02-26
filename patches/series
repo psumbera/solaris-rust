@@ -1,2 +1,2 @@
-rustix.patch
+no-fd-lock.patch
 nix.patch
