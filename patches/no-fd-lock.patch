@@ -6,7 +6,7 @@ diff --git a/src/bootstrap/Cargo.toml b/src/bootstrap/Cargo.toml
 index fcd97b7b589..ff404a80825 100644
 --- a/src/bootstrap/Cargo.toml
 +++ b/src/bootstrap/Cargo.toml
-@@ -42,7 +42,6 @@ cmake = "=0.1.48"
+@@ -43,7 +43,6 @@ cmake = "=0.1.48"
  build_helper = { path = "../build_helper" }
  clap = { version = "4.4", default-features = false, features = ["std", "usage", "help", "derive", "error-context"] }
  clap_complete = "4.4"
@@ -39,7 +39,7 @@ index 409a644b9be..d331411f230 100644
  
  use bootstrap::{
      Build, CONFIG_CHANGE_HISTORY, Config, Flags, Subcommand, find_recent_config_change_ids,
-@@ -26,39 +26,6 @@ fn main() {
+@@ -36,41 +36,6 @@ fn main() {
      let flags = Flags::parse(&args);
      let config = Config::parse(flags);
  
@@ -64,7 +64,9 @@ index 409a644b9be..d331411f230 100644
 -            }
 -            err => {
 -                drop(err);
--                if let Ok(pid) = pid {
+-                // #135972: We can reach this point when the lock has been taken,
+-                // but the locker has not yet written its PID to the file
+-                if let Some(pid) = pid.ok().filter(|pid| !pid.is_empty()) {
 -                    println!("WARNING: build directory locked by process {pid}, waiting for lock");
 -                } else {
 -                    println!("WARNING: build directory locked, waiting for lock");

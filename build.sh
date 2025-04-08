@@ -4,7 +4,7 @@
 #
 set -xe
 
-VERSION=1.85.0
+VERSION=1.86.0
 
 PATH=$RUST_BOOTSTRAP:/usr/gnu/bin:/usr/bin
 
