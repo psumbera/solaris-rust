@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RUST_SOLARIS_VERSION=1.86.0
+RUST_SOLARIS_VERSION=1.85.0
 RUST_SOLARIS_DIR=~/.rust_solaris
 
 mkdir -p $RUST_SOLARIS_DIR
