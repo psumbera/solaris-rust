@@ -4,7 +4,7 @@
 #
 set -xe
 
-VERSION=1.86.0
+VERSION=1.87.0
 
 PATH=$RUST_BOOTSTRAP:/usr/gnu/bin:/usr/bin
 
@@ -21,8 +21,14 @@ SRC_ARCHIVE=${SRC_DIR}.tar.xz
 BUILD_HOME="$BUILD_DIR"/rustc-${VERSION}-home
 PROTO_DIR="$BUILD_DIR"/rustc-${VERSION}-proto
 
-GCC=/usr/gcc/11/bin/gcc
-GXX=/usr/gcc/11/bin/g++
+SRU=$(uname -v | cut -d . -f 3)
+if [ $SRU -ge 78 ]; then
+  GCC=/usr/gcc/14/bin/gcc
+  GXX=/usr/gcc/14/bin/g++
+else
+  GCC=/usr/gcc/11/bin/gcc
+  GXX=/usr/gcc/11/bin/g++
+fi
 
 mkdir -p "$BUILD_DIR"
 
@@ -61,4 +67,4 @@ PATH="$PATH" CC=$GCC CXX=$GXX bash ./configure ${CONFIGURE_OPTIONS}
 PATH=$PATH PKG_CONFIG_PATH=/usr/lib/64/pkgconfig HOME=$BUILD_HOME gmake install DESTDIR=$PROTO_DIR
 
 # Create Rust distribution archive
-( cd $PROTO_DIR/usr && mv local rustc-${VERSION} && gtar cfJ $BUILD_DIR/rust-${VERSION}-Solaris-11.4.42-CBE-`mach`.tar.xz rustc-${VERSION} )
+( cd $PROTO_DIR/usr && mv local rustc-${VERSION} && gtar cfJ $BUILD_DIR/rust-${VERSION}-Solaris-11.4.$SRU-CBE-`mach`.tar.xz rustc-${VERSION} )

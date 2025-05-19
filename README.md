@@ -7,7 +7,7 @@ Note that to build Rust version X you need to have version X or X-1 versoin.
 Usage example:
 
 ```
-RUST_BOOTSTRAP=~/.rust_solaris/rustc-1.85.0/bin ./build.sh
+RUST_BOOTSTRAP=~/.rust_solaris/rustc-1.86.0/bin ./build.sh
 ```
 
 Ultimately Rust should install in standard manner (rustup). But we are not there yet..

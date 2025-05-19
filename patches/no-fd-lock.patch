@@ -6,7 +6,7 @@ diff --git a/src/bootstrap/Cargo.toml b/src/bootstrap/Cargo.toml
 index fcd97b7b589..ff404a80825 100644
 --- a/src/bootstrap/Cargo.toml
 +++ b/src/bootstrap/Cargo.toml
-@@ -43,7 +43,6 @@ cmake = "=0.1.48"
+@@ -38,7 +38,6 @@
  build_helper = { path = "../build_helper" }
  clap = { version = "4.4", default-features = false, features = ["std", "usage", "help", "derive", "error-context"] }
  clap_complete = "4.4"
@@ -38,9 +38,9 @@ index 409a644b9be..d331411f230 100644
 +use std::{env};
  
  use bootstrap::{
-     Build, CONFIG_CHANGE_HISTORY, Config, Flags, Subcommand, find_recent_config_change_ids,
-@@ -36,41 +36,6 @@ fn main() {
-     let flags = Flags::parse(&args);
+     Build, CONFIG_CHANGE_HISTORY, ChangeId, Config, Flags, Subcommand, debug,
+@@ -33,41 +33,6 @@
+     debug!("parsing config based on flags");
      let config = Config::parse(flags);
  
 -    let mut build_lock;
@@ -79,5 +79,5 @@ index 409a644b9be..d331411f230 100644
 -    }
 -
      // check_version warnings are not printed during setup, or during CI
-     let changelog_suggestion = if matches!(config.cmd, Subcommand::Setup { .. }) || CiEnv::is_ci() {
-         None
+     let changelog_suggestion = if matches!(config.cmd, Subcommand::Setup { .. })
+         || config.is_running_on_ci

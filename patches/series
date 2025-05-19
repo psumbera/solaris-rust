@@ -1,2 +1,4 @@
-no-fd-lock.patch
+curl.patch
 nix.patch
+no-fd-lock.patch
+onigoruma.patch
