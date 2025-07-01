@@ -1,4 +1,3 @@
 curl.patch
-nix.patch
 no-fd-lock.patch
 onigoruma.patch

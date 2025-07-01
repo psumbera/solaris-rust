@@ -1,13 +1,13 @@
 # Oracle Solaris Rust builder
 
-This project builds latest stable Rust version for Oracle Solaris 11.4 CBE release [1] (currently 11.4.42).
+This project builds latest stable Rust version for Oracle Solaris 11.4 CBE release [1] (currently 11.4.81).
 
 Note that to build Rust version X you need to have version X or X-1 versoin.
 
 Usage example:
 
 ```
-RUST_BOOTSTRAP=~/.rust_solaris/rustc-1.86.0/bin ./build.sh
+RUST_BOOTSTRAP=~/.rust_solaris/rustc-1.87.0/bin ./build.sh
 ```
 
 Ultimately Rust should install in standard manner (rustup). But we are not there yet..
