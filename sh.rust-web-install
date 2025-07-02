@@ -1,14 +1,15 @@
 #!/bin/bash
 
-RUST_SOLARIS_VERSION=1.87.0
+RUST_SOLARIS_VERSION=1.88.0
 RUST_SOLARIS_DIR=~/.rust_solaris
 
 mkdir -p $RUST_SOLARIS_DIR
 
 SRU=$(uname -v | cut -d . -f 3)
-CBE=42
-if [ $SRU -ge 78 ]; then
-  CBE=81
+CBE=81
+if [ $SRU -lt 78 ]; then
+  CBE=42
+  RUST_SOLARIS_VERSION=1.87.0
 fi
 
 if [ -d $RUST_SOLARIS_DIR/rustc-$RUST_SOLARIS_VERSION ] ; then
