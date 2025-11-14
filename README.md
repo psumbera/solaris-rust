@@ -1,5 +1,19 @@
 # Oracle Solaris Rust builder
 
+NOTE that latest Rust versions for Solaris can be now downloaded directly from Rust upstream (https://forge.rust-lang.org/infra/other-installation-methods.html).
+
+Therefore this project no longer builds newer Rustc version (last version was 1.88.0).
+
+This project will be archived after rustup upstream (https://github.com/rust-lang/rustup) starts to support Solaris (hopefully with next version).
+
+For now it's possible to use Rustup binaries for Solaris provided here (see rustup/ directory):
+
+```
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/psumbera/rustup/refs/heads/solaris-rustup/rustup-init.sh | sh
+```
+
+--
+
 This project builds latest stable Rust version for Oracle Solaris 11.4 CBE release [1] (currently 11.4.81).
 
 Note that to build Rust version X you need to have version X or X-1 versoin.
